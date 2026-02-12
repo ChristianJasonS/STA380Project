@@ -1,79 +1,143 @@
 \documentclass{article}
-\usepackage[utf8]{inputenc}
+% Sets the page margins to 0.75 inch as per standard requirements
 \usepackage[margin=0.75in]{geometry}
-\usepackage[dvipsnames]{xcolor} % adding colour
-\usepackage{amsmath} % adding math equations
-\usepackage{natbib} % adding BibTeX support
-\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor} % For custom colours
+\usepackage{amsmath} % For math equations
+\usepackage{amssymb} % For math symbols
+\usepackage{natbib} % For the bibliography
+\usepackage{hyperref} % For clickable links
 
+% --- BIBLIOGRAPHY SETUP (This creates the .bib file automatically) ---
+\begin{filecontents}{bibliography.bib}
+@manual{RCoreTeam,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2024},
+  url = {https://www.R-project.org/}
+}
 
+@manual{shiny,
+  title = {shiny: Web Application Framework for R},
+  author = {Winston Chang and others},
+  year = {2024},
+  note = {R package version 1.8.1},
+  url = {https://CRAN.R-project.org/package=shiny}
+}
+
+@article{kumaraswamy1980,
+  title = {A generalized probability density function for double-bounded random processes},
+  author = {Kumaraswamy, Ponnambalam},
+  journal = {Journal of Hydrology},
+  volume = {46},
+  number = {1-2},
+  pages = {79--88},
+  year = {1980},
+  publisher = {Elsevier},
+  doi = {10.1016/0022-1694(80)90060-5}
+}
+
+@book{voss2013intro,
+  title={An introduction to statistical computing: a simulation-based approach},
+  author={Voss, J.},
+  year={2013},
+  publisher={John Wiley \& Sons}
+}
+
+@misc{white2015template,
+  title={Undergraduate project capstone proposal template},
+  author={White, J.},
+  year={2015},
+  url={https://www.overleaf.com/latex/templates/undergraduate-project-capstone-proposal-template/rrhdkxngmwcn},
+  note={Licensed under Creative Commons CC BY 4.0}
+}
+\end{filecontents}
+% ---------------------------------------------------------------------
+
+% Link formatting
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+}
 
 \begin{document}
-	\begin{center}
-    
-    	% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
-    
-		\LARGE{\textbf{STA380 Project Proposal}} \\
-        \vspace{1em}
-        \Large{Simulating Kumaraswamy Distribution and Arcsine Distribution using Inverse Transform} \\
-        \vspace{1em}
-        \normalsize\textbf{Christian Jason Sumitro, Kevin, Seye, builder idk ur name mb} \\
-        \normalsize{christian.sumitro@mail.utoronto.ca} \\
-        \vspace{1em}
-        \normalsize{University of Toronto, Mississauga}
-     
-	\end{center}
-    \begin{normalsize}
-        The following proposal is an example of using an ``original" topic that has not already been suggested in the main project document. I plan to teach the material in this example in the last few weeks of the term. Of course, since I am providing this example (with all raw codes), you are not permitted to use MCMC methods for your project unless you want to do something more advanced and outside the scope of the course. {\color{WildStrawberry} Coloured text represents additional comments.}
-        I used an Undergraduate Project Capstone Proposal Template to write this example \citep{white_capstone_template}.
-    
-    	\section{Project Topic}
-        Simulating Kumaraswamy Distribution and Arcsine Distribution using Inverse Transforms on Uniform Distribution. \\
 
-        \section{Simulation vs. Dataset}
-        We will simulate the uniform distribution using R.
-        
-        \section{Project Details}
-        We will be using R to simulate samples from a uniform distribution, then use Inverse Transform method to simulate Kumaraswamy distribution and Arcsine distribution.
-        
-        The following outputs will be provided:
-        \begin{itemize}
-            \item Scatter plot of the samples generated.
-            \item a graph comparing the true Kumaraswamy density with our simulated results (via a histogram).
-            \item a graph comparing the true Arcsine density with our simulated results (via a histogram).
-            \item a text output or table comparing simulated mean and variance to their theoretical values.
-        \end{itemize}
+% --- TITLE PAGE INFO ---
+\begin{center}
+    \LARGE{\textbf{STA380 Project Proposal}} \\
+    \vspace{1em}
+    \Large{Simulating Kumaraswamy and Arcsine Distributions via Inverse Transform} \\
+    \vspace{1em}
+    % UPDATE NAME HERE IF NEEDED
+    \normalsize\textbf{Christian Jason Sumitro, Handaru Kevin Ashshidiqie, Seye, Builder} \\
+    \normalsize{christian.sumitro@mail.utoronto.ca \\
+    handaru.ashshidiqie@mail.utoronto.ca}\\ 
+    \vspace{1em}
+    \normalsize{University of Toronto, Mississauga}
+\end{center}
 
-        \noindent {\color{WildStrawberry}Aside: if extra details mostly pertain to the next section, then you can just write them below instead of repeating yourself.}
-        
-        \section{User Inputs (Shiny Components)}
-        Users will be able to modify the following:
-        \begin{enumerate}
-            \item Setting the seed
-            \item Change the parameters, specifically, for $i \in \{1, 2\}, \mu_{i}, \sigma_{i}$ and correlation $\rho$.
-            \item Select the information presented: 
-                \begin{itemize}
-                    \item the mean and covariance matrix,
-                    \item histogram and Q-Q plot for marginal normality,
-                    \item and the scatterplot of the samples generated.
-                \end{itemize}
-            \item Be able to choose what information is presented, i.e., they can look at results from just 1 MCMC method, 2 MCMC methods, or all three at once.
-            \item For the plots, be able to modify the colours.
-        \end{enumerate}
+\begin{normalsize}
+
+\section{Project Topic}
+We are proposing to create an R Shiny application that simulates the \textbf{Kumaraswamy distribution} and the \textbf{Arcsine distribution}. We will generate random variables from these distributions using the Inverse Transform Sampling method applied to the Uniform distribution.
+
+\section{Simulation vs. Dataset}
+This project will use \textbf{pure simulation}. 
+
+We will not be using any external datasets. Instead, we will generate synthetic data in R. Specifically, we will generate $U \sim \text{Uniform}(0,1)$ and transform it using the inverse cumulative distribution functions (CDFs) derived in the details below.
+
+\section{Project Details}
+We will implement the simulation logic in R and wrap it in a Shiny interface. The goal is to verify that our simulated samples match the theoretical density curves.
+
+\noindent \textbf{Mathematical Formulas:}
+\begin{itemize}
+    \item \textbf{Kumaraswamy Distribution:} Using the inverse CDF derived from:
+    $$x = \left( 1 - (1 - u)^{\frac{1}{b}} \right)^{\frac{1}{a}}$$
+    where $a$ and $b$ are shape parameters.
+    \item \textbf{Arcsine Distribution:} Using the inverse transform for this special case of the Beta distribution:
+    $$x = \sin^2\left(\frac{\pi u}{2}\right)$$
+\end{itemize}
+
+\noindent \textbf{Planned Outputs:}
+The application will generate:
+\begin{itemize}
+    \item A scatter plot of the generated samples.
+    \item A histogram of the simulated data overlaid with the theoretical density curve (PDF).
+    \item A summary table comparing the Simulated Mean and Variance vs. the Theoretical Mean and Variance.
+    \item A Q-Q plot to visually assess the goodness-of-fit.
+\end{itemize}
+
+\section{User Inputs (Shiny Components)}
+Users will be able to modify the following:
+\begin{enumerate}
+    \item \textbf{Setting the seed:} To ensure the simulation results are reproducible.
+    \item \textbf{Change the parameters:} Specifically, for the Kumaraswamy distribution, users can adjust the shape parameters $a$ and $b$ (where $a, b > 0$).
+    \item \textbf{Select the information presented:}
+    \begin{itemize}
+        \item The mean and variance comparison (Simulated vs Theoretical),
+        \item Histogram and Q-Q plot for goodness-of-fit,
+        \item And the scatterplot of the samples generated.
+    \end{itemize}
+    \item \textbf{Toggle Distribution Views:} Be able to choose which distribution to simulate (switch between Kumaraswamy and Arcsine) or potentially compare them side-by-side.
+    \item \textbf{Plot Customization:} Be able to modify the colours of the histograms and density lines.
+    \item \textbf{Download Data:} An option to download the currently simulated dataset as a .csv file.
+\end{enumerate}
 
 \end{normalsize}
 
-\nocite{*}
+% --- REFERENCES SECTION ---
 \bibliographystyle{abbrvnat}
-\bibliography{bibliography}
-\vspace{0.8cm}
+\bibliography{bibliography} 
 
-\noindent {\color{WildStrawberry} I purposely omitted other citations, because naturally, you could just copy and paste some of them. I expect all groups to also reference the following:
-\begin{itemize}
-    \item R Shiny (use the command \texttt{citation("shiny")} in \texttt{R} once you've installed the package).
-    \item The course textbook, or other sources you have used to learn computational statistics methods.
-\end{itemize}
-There is no strict requirement when it comes to the citation style. I only request that you use BibTeX citations.
-}
+% Forces these citations to appear even if not explicitly referenced in text
+\nocite{RCoreTeam}
+\nocite{shiny}
+\nocite{voss2013intro}
+\nocite{white2015template}
 
 \end{document}
