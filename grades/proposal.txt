@@ -1,0 +1,5 @@
+You shouldn't use a qq-plot. It is for testing normality. Your distributions are both non-gaussian, and therefore, we would always expect the qqplot to fail.
+
+Other than that, I like your proposal.
+
+1/1
