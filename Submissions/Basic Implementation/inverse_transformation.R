@@ -49,6 +49,23 @@ draw_histogram <- function(xs, dist, a=0, b=0,
   }
 }
 
+kumaraswamy_moment <- function(n, a, b){
+  return(b*beta(1+n/a, b))
+}
+
 draw_table <- function(xs, dist, a=0, b=0){
-  
+  if (dist == "kumaraswamy"){
+    theoretical_stats <- c(kumaraswamy_moment(1, a, b), 
+                           kumaraswamy_moment(2, a, b) - 
+                             kumaraswamy_moment(1, a, b)^2)
+  }
+  else if (dist == "arcsine"){
+    theoretical_stats <- c(1/2, 1/8)
+  }
+  dt <- data.frame(Simulated=c(mean(xs), sd(xs)^2),
+                   Theoretical=theoretical_stats,
+                   row.names = c("Mean", "Variance"))
+  dt %>%
+    kbl() %>%
+    kable_material(c("striped", "hover"))
 }
