@@ -1,0 +1,26 @@
+Unfortunately, I'm going to have to apply late marks.
+
+I tried to pull this:
+https://github.com/ChristianJasonS/STA380-Project/commit/02cc9877f76de3ca2701aea640d330c4b44b389d
+
+but it was not in a usable state, and the latest version is better...
+
+vignette:
+
+it's not too obvious to me what draw_index_scatter() is supposed to do, as it appears uniformly random to the viewer.
+(To be honest, I would personally remove it. It's not that relevant for the project.)
+
+I edited the code so that the vignette loads the bibliography correctly.
+
+Ideally, what you should be doing in the vignette is load the functions as opposed to re-inserting all of the functions again.
+
+That is what source() is used for.
+
+
+
+The code and tests themselves seem reasonable, although ideally for this checkpoint you should put the test.R file in the same folder as the actual .R file itself... (Otherwise, the code won't run!!)
+
+Late marks: -0.2
+Test file won't work on itself; needs external tweaking: -0.2
+
+1.6/2
