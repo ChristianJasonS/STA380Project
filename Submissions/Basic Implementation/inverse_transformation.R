@@ -113,4 +113,24 @@ draw_table <- function(xs, dist, a=0, b=0){
     kable_material(c("striped", "hover"))
 }
 
+#' Create a scatterplot with the inputted values
+#' @description Create a scatterplot to display the values in a vector. Can be used for the simulated values of Kumaraswamy distribution or the arcsine distribution.
+#' @param xs a vector of simulated values.
+#' @param point_color sets the color of the data points on the scatterplot.
+#' @param point_size sets the size of the data points on the scatterplot.
+#' @param alpha sets the transparency (alpha) of the data points on the scatterplot.
+#' @examples 
+#' set.seed(1)
+#' n <- 50000
+#' a <- 0.5
+#' b <- 0.5
+#' xs <- is_kumaraswamy(n, a, b)
+#' draw_index_scatter(xs, point_color="black", point_size=0.6, alpha=0.6)
+#' @export
+draw_index_scatter <- function(xs, point_color="black", point_size=0.6, alpha=0.6) {
+  n <- length(xs)
+  plot(1:n, xs, col = adjustcolor(point_color, alpha.f = alpha), pch = 16, 
+       cex = point_size, xlab = "Index", ylab = "Simulated Value",
+       main = "Index vs Value Scatterplot")
+}
 
