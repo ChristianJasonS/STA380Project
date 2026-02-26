@@ -62,8 +62,8 @@ draw_histogram <- function(xs, draw_lines=TRUE, dist, a=0, b=0,
   hist(xs, prob = TRUE, col = plot_color, border = plot_border)
   #draws the pdf line of the distribution (if enabled)
   if (draw_lines) {
+    y <- seq(0.001, 0.999, length.out = 1000)
     if (dist == "kumaraswamy"){
-      y <- seq(0.001, 0.999, length.out = 1000)
       lines(y, a*b*y^(a-1)*(1-y^a)^(b-1), col = line_color, lwd = line_width)
     } else if (dist == "arcsine"){
       lines(y, 1/(pi*sqrt(y*(1-y))), col = line_color, lwd = line_width)
