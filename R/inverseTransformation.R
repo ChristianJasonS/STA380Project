@@ -12,7 +12,7 @@ library(kableExtra)
 #' b <- 0.5
 #' xs <- is_kumaraswamy(n, a, b)
 #' head(xs)
-#' @importFrom runif
+#' @importFrom stats runif
 #' @export
 is_kumaraswamy <- function(n, a, b) {
   u <- runif(n)
@@ -28,7 +28,7 @@ is_kumaraswamy <- function(n, a, b) {
 #' n <- 50000
 #' xs <- is_arcsine(n)
 #' head(xs)
-#' @importFrom runif
+#' @importFrom stats runif
 #' @export
 is_arcsine <- function(n) {
   u <- runif(n)
@@ -54,6 +54,8 @@ is_arcsine <- function(n) {
 #' b <- 0.5
 #' xs <- is_kumaraswamy(n, a, b)
 #' draw_histogram(xs, dist="kumaraswamy", a=a, b=b)
+#' @importFrom graphics hist lines
+#' @importFrom grDevices adjustcolor
 #' @export
 draw_histogram <- function(xs, draw_lines=TRUE, dist, a=0, b=0, 
                plot_color="skyblue", plot_border="white",
@@ -94,7 +96,9 @@ kumaraswamy_moment <- function(n, a, b){
 #' b <- 0.5
 #' xs <- is_kumaraswamy(n, a, b)
 #' draw_table(xs, "kumaraswamy", a, b)
-#' @importFrom kableExtra
+#' @importFrom magrittr %>%
+#' @importFrom kableExtra kbl kable_material
+#' @importFrom stats sd
 #' @export
 draw_table <- function(xs, dist, a=0, b=0){
   if (dist == "kumaraswamy"){
@@ -126,6 +130,7 @@ draw_table <- function(xs, dist, a=0, b=0){
 #' b <- 0.5
 #' xs <- is_kumaraswamy(n, a, b)
 #' draw_index_scatter(xs, point_color="black", point_size=0.6, alpha=0.6)
+#' @importFrom grDevices adjustcolor
 #' @export
 draw_index_scatter <- function(xs, point_color="black", point_size=0.6, alpha=0.6) {
   n <- length(xs)

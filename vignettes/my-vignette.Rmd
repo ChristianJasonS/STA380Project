@@ -1,0 +1,125 @@
+---
+title: "Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: bibliography.bib
+nocite: "@*"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(fig.width=7, fig.height=6)
+
+
+```
+
+```{r setup, include = FALSE}
+library(kableExtra)
+is_kumaraswamy <- function(n, a, b) {
+  u <- runif(n)
+  x <- (1 - (1 - u)^(1/b))^(1/a)
+  return(x)
+}
+
+is_arcsine <- function(n) {
+  u <- runif(n)
+  x <- sin(pi * u / 2)^2
+  return(x)
+}
+
+
+draw_histogram <- function(xs, draw_lines=TRUE, dist, a=0, b=0, 
+               plot_color="skyblue", plot_border="white",
+               line_color="red", line_width=2){
+  #draws the histogram of values taken from the dataset
+  hist(xs, prob = TRUE, col = plot_color, border = plot_border)
+  #draws the pdf line of the distribution (if enabled)
+  if (draw_lines) {
+    y <- seq(0.001, 0.999, length.out = 1000)
+    if (dist == "kumaraswamy"){
+      lines(y, a*b*y^(a-1)*(1-y^a)^(b-1), col = line_color, lwd = line_width)
+    } else if (dist == "arcsine"){
+      lines(y, 1/(pi*sqrt(y*(1-y))), col = line_color, lwd = line_width)
+    }
+  }
+}
+
+kumaraswamy_moment <- function(n, a, b){
+  return(b*beta(1+n/a, b))
+}
+
+draw_table <- function(xs, dist, a=0, b=0){
+  if (dist == "kumaraswamy"){
+    theoretical_stats <- c(kumaraswamy_moment(1, a, b), 
+                           kumaraswamy_moment(2, a, b) - 
+                             kumaraswamy_moment(1, a, b)^2)
+  }
+  else if (dist == "arcsine"){
+    theoretical_stats <- c(1/2, 1/8)
+  }
+  dt <- data.frame(Simulated=c(mean(xs), sd(xs)^2),
+                   Theoretical=theoretical_stats,
+                   row.names = c("Mean", "Variance"))
+  dt %>%
+    kbl() %>%
+    kable_material(c("striped", "hover"))
+}
+
+draw_index_scatter <- function(xs, point_color="black", point_size=0.6, alpha=0.6) {
+  n <- length(xs)
+  plot(1:n, xs, col = adjustcolor(point_color, alpha.f = alpha), pch = 16, 
+       cex = point_size, xlab = "Index", ylab = "Simulated Value",
+       main = "Index vs Value Scatterplot")
+}
+```
+
+This vignette serves as a showcase of how the functions written in inverse_transformation.R can be used for simulating the Kumaraswamy distribution and arcsine distribution.
+
+## Kumaraswamy distribution
+```{r Simulating Kumaraswamy(0.7, 0.3) and drawing a histogram and a table and a scatterplot}
+set.seed(1)
+n <- 10000
+a <- 0.7
+b <- 0.3
+xs <- is_kumaraswamy(n, a, b)
+draw_histogram(xs, dist="kumaraswamy", a=a, b=b)
+
+draw_index_scatter(xs)
+
+draw_table(xs, "kumaraswamy", a, b)
+
+draw_index_scatter(xs)
+```
+
+
+## Arcsine distribution
+```{r Simulating arcsine distribution and drawing a histogram and a table and a scatterplot}
+set.seed(1)
+n <- 10000
+xs <- is_arcsine(n)
+draw_histogram(xs, dist="arcsine")
+
+draw_index_scatter(xs)
+
+draw_table(xs, "arcsine")
+
+draw_index_scatter(xs)
+```
+
+## Regarding AI usage
+
+ChatGPT was used in assistance for testing the functions.
+Also used for general git and R commands in console and terminal.
+
+## Bibliography
+
+::: {#refs}
+:::
+
+

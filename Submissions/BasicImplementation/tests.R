@@ -1,6 +1,6 @@
 library("testthat")
 # library("extraDistr")
-library("VaRES")
+# library("VaRES")
 
 set.seed(1)
 
