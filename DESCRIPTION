@@ -1,10 +1,11 @@
 Package: STA380Project
-Title: What the Package Does (One Line, Title Case)
+Title: Simulating Kumaraswamy and Arcsine Distributions
 Version: 0.0.0.9000
 Authors@R: 
     person("Christian Jason", "Sumitro", , "christian.sumitro@mail.utoronto.ca", role = c("aut", "cre"))
     person("Handaru", "Ashshidiqie", , "handaru.ashshidiqie@mail.utoronto.ca", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Khoi", "Ho", , "khoi.ho@mail.utoronto.ca", role = c("aut", "cre"))
+Description: This package uses pure simulation to generate random variables from the Kumaraswamy and Arcsine distributions. It utilizes the Inverse Transform Sampling method applied to the Uniform distribution to verify that simulated samples match their theoretical density curves.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
