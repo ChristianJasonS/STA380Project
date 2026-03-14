@@ -116,6 +116,7 @@ draw_index_scatter(xs)
 
 ChatGPT was used in assistance for testing the functions.
 Also used for general git and R commands in console and terminal.
+Gemini is used to generate shiny code for app.R and server.R
 
 ## Bibliography
 
