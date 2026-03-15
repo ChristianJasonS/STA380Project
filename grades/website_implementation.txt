@@ -21,4 +21,6 @@ I.e., it would be good if beside the plot, you were to add an equation of these 
 
 In general, because there is no output, I can't even allocate whether the shiny components are actually working. (-0.5)
 
+I notice that Christian Jason Sumitro is committing, but not via their account. It is good to link up your GitHub account properly so that your git history can get reported for other people to view. (People have looked at my Git history before...)
+
 0.5/1
