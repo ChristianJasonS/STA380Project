@@ -1,0 +1,24 @@
+The website takes a long time to load; indeed, it doesn't actually seem like anything loads after I waited around 10 minutes...
+
+After investigating the code, it seems like objects such as:
+"kumaraswamy_plot_scat"
+
+don't even exist... (Which is probably why nothing loaded.)
+
+I see that the template that you used is very similar to mine; I think in general you should try to branch out. See the following rubric for the final draft:
+
+Additional Features (20%)
+
+    Creative extensions beyond requirements. 
+
+    Some examples: use of external packages not referenced, unique components, innovative designs, etc.
+
+I think in general you should make it clear on the website what the parameter values a and b refer to.
+
+I.e., it would be good if beside the plot, you were to add an equation of these actual weird distributions so the user can see the parameter values.
+
+---
+
+In general, because there is no output, I can't even allocate whether the shiny components are actually working. (-0.5)
+
+0.5/1
