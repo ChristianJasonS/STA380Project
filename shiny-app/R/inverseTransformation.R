@@ -113,8 +113,11 @@ draw_table <- function(xs, dist, a=0, b=0){
                    Theoretical=theoretical_stats,
                    row.names = c("Mean", "Variance"))
   dt %>%
-    kbl() %>%
-    kable_material(c("striped", "hover"))
+    kbl(format = "html") %>%
+    kable_styling(
+      bootstrap_options = c("striped", "hover"),
+      full_width = FALSE
+    )
 }
 
 #' Create a scatterplot with the inputted values
