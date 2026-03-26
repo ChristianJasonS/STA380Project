@@ -22,7 +22,7 @@ output$plots <- renderPlot({
   }
 })
 
-output$table <- renderTable({
+output$table <- renderUI({
   source("R/inverseTransformation.R")
   
   set.seed(input$seed)
@@ -41,7 +41,9 @@ output$table <- renderTable({
   }
   
   if (input$graph_type == "table"){
-    draw_table(xs = xs, dist = dist, a = a, b = b)
+    HTML(
+      draw_table(xs = xs, dist = dist, a = a, b = b)
+    )
   }
 })
 
