@@ -14,6 +14,7 @@ ui <- page_sidebar(
   
   sidebar = sidebar(
     
+    numericInput("seed", "Set Seed:", value=1),
     numericInput("n_samples", "Number of Samples (n):", value = 10000, min = 1),
     
     selectInput(inputId = "dist_type",
@@ -24,8 +25,8 @@ ui <- page_sidebar(
     
     conditionalPanel(
       condition = "input.dist_type == 'kumaraswamy'",
-      numericInput("param_a", "Shape parameter a (controls left tail):", value = 0.5, min = 0.1, step = 0.001),
-      numericInput("param_b", "Shape parameter b (controls right tail):", value = 0.5, min = 0.1, step = 0.001)
+      numericInput("param_a", "Shape parameter a (controls left tail):", value = 0.5, min = 0.0001, step = 0.1),
+      numericInput("param_b", "Shape parameter b (controls right tail):", value = 0.5, min = 0.0001, step = 0.1)
     ),
     
     selectInput(inputId = "graph_type",
@@ -37,7 +38,9 @@ ui <- page_sidebar(
     width = 400,
     open = "always"),
   
-  "main content"
+  tableOutput("table"),
+  plotOutput("plots")
+  
 )
   
   # conditionalPanel(
