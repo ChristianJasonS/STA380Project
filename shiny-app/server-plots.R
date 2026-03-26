@@ -18,7 +18,9 @@ output$plots <- renderPlot({
   
   
   if (input$graph_type == "hist"){
-    draw_histogram(xs = xs, dist = dist, a = a, b = b)
+    draw_histogram(xs = xs, dist = dist, a = a, b = b, 
+                   plot_color = input$plot_colour, plot_border = input$border_colour,
+                   line_color = input$line_colour)
   }
 })
 

@@ -1,6 +1,7 @@
 library(shiny)
 library(bslib)
 library(shinycssloaders)
+library(colourpicker)
 
 
 options(spinner.type = 8, spinner.color = "#6990EE")
@@ -35,6 +36,12 @@ ui <- page_sidebar(
                                "Statistics Table" = "table"),
                 selected = "simulation"),
     
+    conditionalPanel(
+      condition = "input.graph_type == 'hist'",
+      colourInput("plot_colour", "Colour of the plot:", "skyblue"),
+      colourInput("border_colour", "Colour of the plot's borders", "white"),
+      colourInput("line_colour", "Colour of the theoretical pdf's line:", "red")
+    ),
     width = 400,
     open = "always"),
   
