@@ -41,10 +41,9 @@ ui <- page_sidebar(
       
       selectInput(inputId = "graph_version",
                   label = 'Which output would you like to view?',
-                  choices = list("Scatterplot" = "scat",
-                                 "Histogram" = "hist",
+                  choices = list("Histogram" = "hist",
                                  "Statistics Table" = "table"),
-                  selected = "scat")
+                  selected = "hist")
     ), 
     
     width = 400,
@@ -52,11 +51,6 @@ ui <- page_sidebar(
   
   conditionalPanel(
     condition = "input.dist_type == 'kumaraswamy'",
-    
-    conditionalPanel(
-      condition = "input.graph_version == 'scat'",
-      withSpinner(plotOutput("kumaraswamy_plot_scat"))
-    ), 
     
     conditionalPanel(
       condition = "input.graph_version == 'hist'",
@@ -71,11 +65,6 @@ ui <- page_sidebar(
   
   conditionalPanel(
     condition = "input.dist_type == 'arcsine'",
-    
-    conditionalPanel(
-      condition = "input.graph_version == 'scat'",
-      withSpinner(plotOutput("arcsine_plot_scat"))
-    ), 
     
     conditionalPanel(
       condition = "input.graph_version == 'hist'",
