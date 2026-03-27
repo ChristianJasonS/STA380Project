@@ -1,0 +1,17 @@
+Well I'm glad the website is working right now!
+
+I think in general the display and the format is too similar to what I currently have, without that many extensions.
+
+I also think the plot itself doesn't have a nice title: "histogram of xs", what is "xs" here?
+
+Aesthetics (-2%)
+The title of the plot isn't exactly clear due to the label "xs". Should ideally match the description based on the distribution the user is trying to simulate.
+
+Additional Features (-20%)
+No additional features beyond requirements were incorporated.
+
+Group mark: 
+> 58/80 * 6.4
+[1] 4.64
+
+Individual grades are private and will be released later when posted on Quercus. Bonus marks, if applicable, are reflected on Quercus instead of feedback here.
